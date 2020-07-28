@@ -1,0 +1,20 @@
+version: "3.0"
+services:
+  exos_pandas:
+    build:
+      context: .
+    container_name: exos_pandas
+    image: jupyter-image-custom2
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    ports:
+      - 8888:8888
+      - 6006:6006
+    volumes:
+      - ../:/usr/src/exos_pandas
+    command: sh -c "
+      cd ../../usr/src/exos_pandas
+      && jupyter notebook --ip='0.0.0.0' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
