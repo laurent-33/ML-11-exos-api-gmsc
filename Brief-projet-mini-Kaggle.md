@@ -7,14 +7,28 @@ Les commandes suivantes seront exécutées afin de tester votre travail:
 ```
 pip install -r requirements.txt
 
-export FLASK_APP=api.py
-flask run
+mettre le fichier "cs-training.csv" dans un dossier csv puis faire les commandes :
+$ python split.py
+$ python predict.py
 
-curl --request POST \
+$ export FLASK_APP=api.py
+$ flask run
+
+$ curl --request POST \
   --url 'http://localhost:5000/submit' \
   --header 'accept: multipart/form-data' \
-  -F 'file=@test2-predictions.csv'
+  -F 'file=@./csv/test2-predictions.csv'
 ```
+
+alternative pour lancer depuis docker comme il n'y a pas curl, faire avec wget:
+wget 'http://localhost:5000/submit' \
+  --header 'accept: multipart/form-data' \
+  --post-data 'file=@./csv/test2-predictions.csv'
+
+
+Résultat:
+l'auc s'affiche dans le terminal
+et l'api renvoie aussi un json
 
 Livrables:
 * requirements.txt contenant les dépendances Python
