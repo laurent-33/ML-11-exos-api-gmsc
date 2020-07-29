@@ -17,7 +17,7 @@ $ flask run
 $ curl --request POST \
   --url 'http://localhost:5000/submit' \
   --header 'accept: multipart/form-data' \
-  -F 'file=@./csv/test2-predictions.csv'
+  --data 'file=@./csv/test2-predictions.csv'
 ```
 
 alternative pour lancer depuis docker comme il n'y a pas curl, faire avec wget:
